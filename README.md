@@ -1,4 +1,4 @@
-# Mercado Libre Cypress Automation
+# SauceDemo Cypress Automation
 
 ## Description
 

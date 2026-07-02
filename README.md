@@ -9,6 +9,14 @@ Automation framework developed with:
 - JavaScript
 - Page Object Model
 
-## Status
+## Funcionalidades automatizadas
 
-🚧 In progress
+### Inicio de sesión
+- ✅ Login exitoso
+- ✅ Usuario bloqueado
+- ✅ Validación de contraseña incorrecta
+- ✅ Validación de usuario inexistente
+- ✅ Validación de usuario vacío
+- ✅ Validación de contraseña vacía
+- ✅ Validación de usuario y contraseña vacíos
+- ✅ Validación de espacios en blanco

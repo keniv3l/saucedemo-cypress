@@ -17,12 +17,16 @@ class LoginPage {
     }
 
     typeUsername(username) {
+    if (username) {
         this.getUsernameInput().type(username);
     }
+}
 
     typePassword(password) {
+    if (password) {
         this.getPasswordInput().type(password);
     }
+}
 
     clickLogin() {
         this.getLoginButton().click();
@@ -33,7 +37,15 @@ class LoginPage {
         this.typePassword(password);
         this.clickLogin();
     }
+    getErrorMessage() {
+        return cy.get("[data-test='error']");
+    }
 
+    validateErrorMessage(message) {
+        this.getErrorMessage()
+            .should("be.visible")
+            .and("contain.text", message);
+    }
 }
 
 module.exports = LoginPage;

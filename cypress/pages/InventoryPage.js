@@ -26,6 +26,18 @@ class InventoryPage {
         return cy.get("[data-test='product-sort-container']");
     }
 
+    getCartLink() {
+        return cy.get(".shopping_cart_link");
+    }
+
+    getCartBadge() {
+        return cy.get(".shopping_cart_badge");
+    }
+
+    getProductByName(productName) {
+        return cy.contains(".inventory_item", productName);
+    }
+
     // ====== Validaciones ======
 
     validateInventoryIsDisplayed() {
@@ -94,10 +106,54 @@ class InventoryPage {
     });
     }
 
+    validateProductsSortedByPriceDesc() {
+    this.getProductPrices().then(($items) => {
+        const prices = [...$items].map(item =>
+            Number(item.innerText.replace("$", ""))
+        );
+
+        const sorted = [...prices].sort((a, b) => b - a);
+
+        expect(prices).to.deep.equal(sorted);
+    });
+    }
+
+    validateCartBadgeCount(count) {
+        if (Number(count) === 0) {
+            this.getCartBadge().should("not.exist");
+        } else {
+            this.getCartBadge()
+                .should("be.visible")
+                .and("have.text", String(count));
+        }
+    }
+
+    validateProductButtonIsRemove(productName) {
+        this.getProductByName(productName)
+            .contains("button", "Remove")
+            .should("be.visible");
+    }
+
     // ====== Acciones ======
 
     sortBy(option) {
         this.getSortDropdown().select(option);
+    }
+
+    addProductToCart(productName) {
+        this.getProductByName(productName)
+            .contains("button", "Add to cart")
+            .click();
+    }
+
+    removeProductFromInventory(productName) {
+        this.getProductByName(productName)
+            .contains("button", "Remove")
+            .click();
+    }
+
+    openCart() {
+        this.getCartLink().click();
     }
     
 

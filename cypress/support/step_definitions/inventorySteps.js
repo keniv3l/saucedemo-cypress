@@ -35,3 +35,7 @@ Then("los productos se muestran en orden alfabético descendente", () => {
 Then("los productos se muestran ordenados por precio ascendente", () => {
     inventoryPage.validateProductsSortedByPrice();
 });
+
+Then("los productos se muestran ordenados por precio descendente", () => {
+    inventoryPage.validateProductsSortedByPriceDesc();
+});

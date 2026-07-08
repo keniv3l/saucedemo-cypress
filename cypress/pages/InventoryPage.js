@@ -38,6 +38,10 @@ class InventoryPage {
         return cy.contains(".inventory_item", productName);
     }
 
+    getProductNameLink(productName) {
+        return cy.contains(".inventory_item_name", productName);
+    }
+
     // ====== Validaciones ======
 
     validateInventoryIsDisplayed() {
@@ -154,6 +158,10 @@ class InventoryPage {
 
     openCart() {
         this.getCartLink().click();
+    }
+
+    openProductDetails(productName) {
+        this.getProductNameLink(productName).click();
     }
     
 

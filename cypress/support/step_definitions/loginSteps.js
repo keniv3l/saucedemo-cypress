@@ -3,7 +3,6 @@ const { Given, When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 const LoginPage = require("../../pages/LoginPage");
 const InventoryPage = require("../../pages/InventoryPage");
 
-
 const inventoryPage = new InventoryPage();
 const loginPage = new LoginPage();
 

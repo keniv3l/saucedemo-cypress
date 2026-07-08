@@ -38,6 +38,26 @@ class CheckoutPage {
         return cy.get("[data-test='complete-header']");
     }
 
+    getBackToProductsButton() {
+        return cy.get("[data-test='back-to-products']");
+    }
+
+    getSummaryItemByName(productName) {
+        return cy.contains(".cart_item", productName);
+    }
+
+    getSummarySubtotalLabel() {
+        return cy.get(".summary_subtotal_label");
+    }
+
+    getSummaryTaxLabel() {
+        return cy.get(".summary_tax_label");
+    }
+
+    getSummaryTotalLabel() {
+        return cy.get(".summary_total_label");
+    }
+
     // ====== Validaciones ======
 
     validateCheckoutOverviewIsDisplayed() {
@@ -60,6 +80,41 @@ class CheckoutPage {
         this.getErrorMessage()
             .should("be.visible")
             .and("contain.text", message);
+    }
+
+    validateSummaryProduct(productName) {
+        this.getSummaryItemByName(productName)
+            .should("be.visible");
+    }
+
+    validateSummaryProductQuantity(productName, quantity) {
+        this.getSummaryItemByName(productName)
+            .find(".cart_quantity")
+            .should("have.text", String(quantity));
+    }
+
+    validateSummaryProductPrice(productName, price) {
+        this.getSummaryItemByName(productName)
+            .find(".inventory_item_price")
+            .should("have.text", price);
+    }
+
+    validateSubtotal(subtotal) {
+        this.getSummarySubtotalLabel()
+            .should("be.visible")
+            .and("have.text", subtotal);
+    }
+
+    validateTax(tax) {
+        this.getSummaryTaxLabel()
+            .should("be.visible")
+            .and("have.text", tax);
+    }
+
+    validateTotal(total) {
+        this.getSummaryTotalLabel()
+            .should("be.visible")
+            .and("have.text", total);
     }
 
     // ====== Acciones ======
@@ -98,6 +153,10 @@ class CheckoutPage {
 
     finish() {
         this.getFinishButton().click();
+    }
+
+    backToProducts() {
+        this.getBackToProductsButton().click();
     }
 }
 
